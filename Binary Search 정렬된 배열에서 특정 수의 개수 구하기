@@ -1,0 +1,24 @@
+# 정렬된 배열에서 특정 수의 개수 구하기
+
+from bisect import bisect_left, bisec_right
+
+# 값이 [left_value, right_value]인 데이터의 개수를 반환하는 함수
+def count_by_range(array, left_value, right_value):
+    right_index = bisec_right(array, right_value)
+    left_index = bisect_left(array, left_value)
+    return right_index - left_index
+
+# 데이터의 개수와 찾고자 하는 값을 입력
+n, x = map(int, input().split())
+# 전체 데이터를 입력
+array = list(map(int, input().split()))
+
+# 데이터의 개수 계산을 위한 함수 실행
+count = count_by_range(array, x, x)
+
+# 값이 x인 원소가 존재하지 않은경우
+if count == 0:
+    print(-1)
+# 값이 x인 원소가 존재하는 경우 
+else:
+    print(count)
